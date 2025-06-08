@@ -1,9 +1,25 @@
 import streamlit as st
 import pandas as pd
+from github import Github
 
 # 页面设置
 st.set_page_config(page_title="户型展示与搜索系统", layout="wide")
 st.title("🏘️ 户型展示与搜索系统")
+
+# 在 Streamlit Secrets 设置 GITHUB_TOKEN
+# 创建位置：https://github.com/settings/tokens
+token = st.secrets["GITHUB_TOKEN"]
+
+# 1. 连接 GitHub API
+g = Github(token)
+
+# 2. 获取仓库和文件
+repo = g.get_repo("NightShadowNian/ng")
+file = repo.get_contents("南国鼎峰-户型案例.xlsx")
+
+# 3. 解码并读取 Excel
+@st.cache_data
+def load_private_excel(content):
 
 # 读取数据（实际使用时替换为您的Excel文件路径）
 @st.cache_data
@@ -17,7 +33,12 @@ def load_data():
         "地址": ["url1", "url2", "url3", "url4", "url5", "url6"]
     }
     # return pd.DataFrame(data)
-    return pd.read_excel(r"E:\win\桌面\南国鼎峰-户型案例.xlsx")
+    import base64
+    decoded = base64.b64decode(content.content)
+    return pd.read_excel(BytesIO(decoded))
+
+    return load_private_excel(file)
+    # return pd.read_excel(r"E:\win\桌面\南国鼎峰-户型案例.xlsx")
 
 df = load_data()
 
