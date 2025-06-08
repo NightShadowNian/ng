@@ -8,7 +8,7 @@ st.title("🏘️ 户型展示与搜索系统")
 
 # 在 Streamlit Secrets 设置 GITHUB_TOKEN
 # 创建位置：https://github.com/settings/tokens
-token = st.secrets["GITHUB_TOKEN"]
+token = st.secrets["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"]
 
 # 1. 连接 GitHub API
 g = Github(token)
