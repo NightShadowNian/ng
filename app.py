@@ -17,10 +17,6 @@ g = Github(token)
 repo = g.get_repo("NightShadowNian/ng")
 file = repo.get_contents("南国鼎峰-户型案例.xlsx")
 
-# 3. 解码并读取 Excel
-@st.cache_data
-def load_private_excel(content):
-
 # 读取数据（实际使用时替换为您的Excel文件路径）
 @st.cache_data
 def load_data():
