@@ -1,1 +1,6 @@
+# requirements.txt
+streamlit==1.25.0
+pandas==2.0.3
+openpyxl==3.1.2  # 处理Excel文件必需
+requests==2.31.0
 pygithub
